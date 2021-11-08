@@ -30,7 +30,7 @@
       </nav>
       <div tabindex="-1" id="notebook" class="border-box-sizing">
         <div class="container" id="notebook-container">
-            <iframe src="/rendered/{{ page.notebook }}"> </iframe>
+            <iframe width="100%" height="auto" src="{{ "/rendered/" + page.notebook | relative_url }}"> </iframe>
         </div>
       </div>
     </body>
