@@ -111,12 +111,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2021-10-01-different_coordinates.html">
-   The problem
+   Effect of rounding on coordinates with Xarray
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2021-09-30-code-design.html">
-   Badly organised code
+   Example to improve code design
   </a>
  </li>
  <li class="toctree-l1">
@@ -326,12 +326,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2021-10-01-different_coordinates.html">
-     The problem
+     Effect of rounding on coordinates with Xarray
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2021-09-30-code-design.html">
-     Badly organised code
+     Example to improve code design
     </a>
    </li>
    <li class="toctree-l2">
@@ -395,7 +395,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">
-     Problem description
+     Compare data with different calendars
     </a>
    </li>
    <li class="toctree-l2">
@@ -462,14 +462,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">
-     <strong>
-      Basic usage of python logging module
-     </strong>
+     Basic usage of python logging module
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">
-     Line plot types
+     Review of line plots with Xarray
     </a>
    </li>
    <li class="toctree-l2">
@@ -488,8 +486,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-16-search-cmip5-data-interactively.html">
+     Using ARCCSSive to search CMIP5
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
      Episode 1: Terminology
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-02-Merge-arrays-with-missing-data.html">
+     Merge arrays with missing data
     </a>
    </li>
    <li class="toctree-l2">
@@ -528,6 +536,28 @@
     </a>
    </li>
   </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Links
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://climateextremes.org.au">
+   CLEX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="http://climate-cms.wikis.unsw.edu.au">
+   CMS Wiki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://nci.org.au">
+   NCI
+  </a>
  </li>
 </ul>
 
@@ -634,16 +664,9 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#claire-carouge">
-   Claire Carouge
+  <a class="reference internal nav-link" href="#claire-carouge-clex-cms">
+   Claire Carouge, CLEX CMS
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#let-s-say-you-have-two-variables-that-vary-in-space-and-time-you-can-easily-calculate-the-maximum-of-one-variable-for-each-spatial-point-across-time-now-you-would-like-to-know-what-are-the-values-of-the-second-variable-at-the-same-time-the-first-reaches-a-maximum-and-this-for-each-spatial-point">
-     Let’s say you have two variables that vary in space and time. You can easily calculate the maximum of one variable for each spatial point across time. Now, you would like to know what are the values of the second variable at the same time the first reaches a maximum. And this, for each spatial point.
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#variables-of-the-same-dimensionality">
@@ -708,10 +731,9 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="find-the-value-of-a-variable-at-the-times-when-another-variable-is-maximum">
 <h1>Find the value of a variable at the times when another variable is maximum<a class="headerlink" href="#find-the-value-of-a-variable-at-the-times-when-another-variable-is-maximum" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="claire-carouge">
-<h2>Claire Carouge<a class="headerlink" href="#claire-carouge" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="let-s-say-you-have-two-variables-that-vary-in-space-and-time-you-can-easily-calculate-the-maximum-of-one-variable-for-each-spatial-point-across-time-now-you-would-like-to-know-what-are-the-values-of-the-second-variable-at-the-same-time-the-first-reaches-a-maximum-and-this-for-each-spatial-point">
-<h3>Let’s say you have two variables that vary in space and time. You can easily calculate the maximum of one variable for each spatial point across time. Now, you would like to know what are the values of the second variable at the same time the first reaches a maximum. And this, for each spatial point.<a class="headerlink" href="#let-s-say-you-have-two-variables-that-vary-in-space-and-time-you-can-easily-calculate-the-maximum-of-one-variable-for-each-spatial-point-across-time-now-you-would-like-to-know-what-are-the-values-of-the-second-variable-at-the-same-time-the-first-reaches-a-maximum-and-this-for-each-spatial-point" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="claire-carouge-clex-cms">
+<h2>Claire Carouge, CLEX CMS<a class="headerlink" href="#claire-carouge-clex-cms" title="Permalink to this headline">¶</a></h2>
+<p>Let’s say you have two variables that vary in space and time. You can easily calculate the maximum of one variable for each spatial point across time. Now, you would like to know what are the values of the second variable at the same time the first reaches a maximum. And this, for each spatial point.</p>
 <p>As we shall see, it is relatively easy to do with two variables of the same rank, and that is what the <code class="docutils literal notranslate"><span class="pre">where()</span></code> function is designed for. But, depending on which Python package you are using, this problem can be more complicated with variables of different ranks, or not!
 In this blog, we will look at both scenarios.</p>
 <p>We first need to import some packages, read in some data and calculate the maximum in time at all spatial points. As usual, I’m going to use CMIP data as it’s easily accessible.</p>
@@ -813,7 +835,6 @@ Coordinates:
   * lon      (lon) float64 0.0 1.875 3.75 5.625 7.5 ... 352.5 354.4 356.2 358.1
     height   float64 ...
 </pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -1039,16 +1060,16 @@ Coordinates:
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-env-analysis3-18.07-py"
+            mode: "conda-env-analysis3-21.10-py"
         },
         kernelOptions: {
-            kernelName: "conda-env-analysis3-18.07-py",
+            kernelName: "conda-env-analysis3-21.10-py",
             path: "./posts"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-env-analysis3-18.07-py'</script>
+    <script>kernelName = 'conda-env-analysis3-21.10-py'</script>
 
               </div>
               

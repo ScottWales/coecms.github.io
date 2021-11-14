@@ -111,12 +111,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2021-10-01-different_coordinates.html">
-   The problem
+   Effect of rounding on coordinates with Xarray
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2021-09-30-code-design.html">
-   Badly organised code
+   Example to improve code design
   </a>
  </li>
  <li class="toctree-l1">
@@ -326,12 +326,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2021-10-01-different_coordinates.html">
-     The problem
+     Effect of rounding on coordinates with Xarray
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2021-09-30-code-design.html">
-     Badly organised code
+     Example to improve code design
     </a>
    </li>
    <li class="toctree-l2">
@@ -395,7 +395,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">
-     Problem description
+     Compare data with different calendars
     </a>
    </li>
    <li class="toctree-l2">
@@ -462,14 +462,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">
-     <strong>
-      Basic usage of python logging module
-     </strong>
+     Basic usage of python logging module
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">
-     Line plot types
+     Review of line plots with Xarray
     </a>
    </li>
    <li class="toctree-l2">
@@ -488,8 +486,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-16-search-cmip5-data-interactively.html">
+     Using ARCCSSive to search CMIP5
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
      Episode 1: Terminology
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-02-Merge-arrays-with-missing-data.html">
+     Merge arrays with missing data
     </a>
    </li>
    <li class="toctree-l2">
@@ -528,6 +536,28 @@
     </a>
    </li>
   </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Links
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://climateextremes.org.au">
+   CLEX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="http://climate-cms.wikis.unsw.edu.au">
+   CMS Wiki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://nci.org.au">
+   NCI
+  </a>
  </li>
 </ul>
 
@@ -634,6 +664,11 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aidan-heerdegen-clex-cms">
+   Aidan Heerdegen, CLEX CMS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sample-data-in-polar-projection">
    Sample data in polar projection
   </a>
@@ -661,6 +696,8 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="regridding-from-one-coordinate-system-to-another-with-pyproj">
 <h1>Regridding from one coordinate system to another with pyproj<a class="headerlink" href="#regridding-from-one-coordinate-system-to-another-with-pyproj" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="aidan-heerdegen-clex-cms">
+<h2>Aidan Heerdegen, CLEX CMS<a class="headerlink" href="#aidan-heerdegen-clex-cms" title="Permalink to this headline">¶</a></h2>
 <p>This post follows on from a <a class="reference external" href="http://climate-cms.org/2021/10/01/pyproj.html">previous post</a> which covered converting between coordinate systems with <a class="reference external" href="https://pyproj4.github.io/pyproj/stable/">pyproj</a>.</p>
 <p>Some cells have <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> magic <code class="docutils literal notranslate"><span class="pre">%%time</span></code> commands for no other reason than to give an indication of how long these operations typically take. Having an expectation of how long something should take is a useful metric for knowing when something is not working correctly.</p>
 <div class="cell docutils container">
@@ -673,6 +710,7 @@
 <span class="kn">import</span> <span class="nn">pyproj</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>

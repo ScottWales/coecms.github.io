@@ -111,12 +111,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2021-10-01-different_coordinates.html">
-   The problem
+   Effect of rounding on coordinates with Xarray
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2021-09-30-code-design.html">
-   Badly organised code
+   Example to improve code design
   </a>
  </li>
  <li class="toctree-l1">
@@ -326,12 +326,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2021-10-01-different_coordinates.html">
-     The problem
+     Effect of rounding on coordinates with Xarray
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2021-09-30-code-design.html">
-     Badly organised code
+     Example to improve code design
     </a>
    </li>
    <li class="toctree-l2">
@@ -395,7 +395,7 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">
-     Problem description
+     Compare data with different calendars
     </a>
    </li>
    <li class="toctree-l2">
@@ -462,14 +462,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">
-     <strong>
-      Basic usage of python logging module
-     </strong>
+     Basic usage of python logging module
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">
-     Line plot types
+     Review of line plots with Xarray
     </a>
    </li>
    <li class="toctree-l2">
@@ -488,8 +486,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-16-search-cmip5-data-interactively.html">
+     Using ARCCSSive to search CMIP5
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
      Episode 1: Terminology
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-02-Merge-arrays-with-missing-data.html">
+     Merge arrays with missing data
     </a>
    </li>
    <li class="toctree-l2">
@@ -528,6 +536,28 @@
     </a>
    </li>
   </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Links
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://climateextremes.org.au">
+   CLEX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="http://climate-cms.wikis.unsw.edu.au">
+   CMS Wiki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://nci.org.au">
+   NCI
+  </a>
  </li>
 </ul>
 
@@ -634,6 +664,11 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#paola-petrelli-clex-cms">
+   Paola Petrelli, CLEX CMS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#opendap-url">
    OPeNDAP url
   </a>
@@ -659,11 +694,14 @@
         
               <div>
                 
-  <div class="section" id="using-opendap-to-access-data-remotely-mur-example">
+  <div class="tex2jax_ignore mathjax_ignore section" id="using-opendap-to-access-data-remotely-mur-example">
 <h1>Using OPeNDAP to access data remotely: MUR example<a class="headerlink" href="#using-opendap-to-access-data-remotely-mur-example" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="paola-petrelli-clex-cms">
+<h2>Paola Petrelli, CLEX CMS<a class="headerlink" href="#paola-petrelli-clex-cms" title="Permalink to this headline">¶</a></h2>
 <p>One of our researcher asked me recently to download the MUR (Multi-scale Ultra-high Resolution SST) dataset. She is interested in all the available period but only for a small region. This dataset is relatively small but has many files (several for each day across 19 years) and it is updated frequently. This means that we would also have to update and check the dataset frequently and the files would be stored across several sub-directories making the access more complicated. <br><br>
 Fortunately this data is available via OPeNDAP. OPeNDAP is a web-based software that allows users to access datasets remotely. Many softwares used for analysis recognise an OPeNDAP url as a filename. A OPeNDAP url is usually constituted by the remote address of the file followed by optional constraints.<br><br>
 This is one of the advantages of OPeNDAP you don’t need to download a file before using it, you can simply subset the portion you need and the software you are using will load only the data you need. Next time you run the same analysis, if the data has been updated, you will be automatically using the updated dataset.<br><br></p>
+</div>
 <div class="section" id="opendap-url">
 <h2>OPeNDAP url<a class="headerlink" href="#opendap-url" title="Permalink to this headline">¶</a></h2>
 <p>Let’s check an example using a test server:<br><br>

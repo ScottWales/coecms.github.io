@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The problem &#8212; CLEX CMS Blog</title>
+    <title>Effect of rounding on coordinates with Xarray &#8212; CLEX CMS Blog</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,7 +51,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Badly organised code" href="2021-09-30-code-design.html" />
+    <link rel="next" title="Example to improve code design" href="2021-09-30-code-design.html" />
     <link rel="prev" title="Converting between coordinate systems with Pyproj" href="2021-10-01-pyproj.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -111,12 +111,12 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   The problem
+   Effect of rounding on coordinates with Xarray
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2021-09-30-code-design.html">
-   Badly organised code
+   Example to improve code design
   </a>
  </li>
  <li class="toctree-l1">
@@ -326,12 +326,12 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     The problem
+     Effect of rounding on coordinates with Xarray
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2021-09-30-code-design.html">
-     Badly organised code
+     Example to improve code design
     </a>
    </li>
    <li class="toctree-l2">
@@ -395,7 +395,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="2019-11-12_Calendars_and_monthly_data.html">
-     Problem description
+     Compare data with different calendars
     </a>
    </li>
    <li class="toctree-l2">
@@ -462,14 +462,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">
-     <strong>
-      Basic usage of python logging module
-     </strong>
+     Basic usage of python logging module
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">
-     Line plot types
+     Review of line plots with Xarray
     </a>
    </li>
    <li class="toctree-l2">
@@ -488,8 +486,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-16-search-cmip5-data-interactively.html">
+     Using ARCCSSive to search CMIP5
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
      Episode 1: Terminology
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-02-Merge-arrays-with-missing-data.html">
+     Merge arrays with missing data
     </a>
    </li>
    <li class="toctree-l2">
@@ -528,6 +536,28 @@
     </a>
    </li>
   </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Links
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://climateextremes.org.au">
+   CLEX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="http://climate-cms.wikis.unsw.edu.au">
+   CMS Wiki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://nci.org.au">
+   NCI
+  </a>
  </li>
 </ul>
 
@@ -635,6 +665,18 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
+   Effect of rounding on coordinates with Xarray
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#claire-carouge-clex-cms">
+     Claire Carouge, CLEX CMS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-problem">
    The problem
   </a>
  </li>
@@ -671,9 +713,14 @@
         
               <div>
                 
-  <p>By Claire Carouge</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="effect-of-rounding-on-coordinates-with-xarray">
+<h1>Effect of rounding on coordinates with Xarray<a class="headerlink" href="#effect-of-rounding-on-coordinates-with-xarray" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="claire-carouge-clex-cms">
+<h2>Claire Carouge, CLEX CMS<a class="headerlink" href="#claire-carouge-clex-cms" title="Permalink to this headline">¶</a></h2>
 <p>This notebook demonstrates how to work with two datasets that should have the same dimensional coordinates, but for whatever reason don’t.</p>
 <p>When doing operations involving the 2 DataArrays, Xarray will either return the results on the common locations only or return an indexing error. The solution is then to replace one set of coordinates with the other set.</p>
+</div>
+</div>
 <div class="tex2jax_ignore mathjax_ignore section" id="the-problem">
 <h1>The problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h1>
 <p>To demonstrate, we create two DataArrays that have a slightly different coordinate array. Note how the difference is so small that Jupyter’s default presentation obscures it by rounding.</p>
@@ -2970,7 +3017,7 @@ Coordinates:
         <a class="right-next" href="2021-09-30-code-design.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Badly organised code</p>
+                <p class="prevnext-title">Example to improve code design</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

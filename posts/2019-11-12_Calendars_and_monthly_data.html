@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Problem description &#8212; CLEX CMS Blog</title>
+    <title>Compare data with different calendars &#8212; CLEX CMS Blog</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -111,12 +111,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2021-10-01-different_coordinates.html">
-   The problem
+   Effect of rounding on coordinates with Xarray
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2021-09-30-code-design.html">
-   Badly organised code
+   Example to improve code design
   </a>
  </li>
  <li class="toctree-l1">
@@ -326,12 +326,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2021-10-01-different_coordinates.html">
-     The problem
+     Effect of rounding on coordinates with Xarray
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2021-09-30-code-design.html">
-     Badly organised code
+     Example to improve code design
     </a>
    </li>
    <li class="toctree-l2">
@@ -395,7 +395,7 @@
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Problem description
+     Compare data with different calendars
     </a>
    </li>
    <li class="toctree-l2">
@@ -462,14 +462,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-10-05-introduction-to-python-logging.html">
-     <strong>
-      Basic usage of python logging module
-     </strong>
+     Basic usage of python logging module
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="2018-09-28-line-plots-with-xarray.html">
-     Line plot types
+     Review of line plots with Xarray
     </a>
    </li>
    <li class="toctree-l2">
@@ -488,8 +486,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-16-search-cmip5-data-interactively.html">
+     Using ARCCSSive to search CMIP5
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="2018-08-10-Fortran-Debugging-Videos.html">
      Episode 1: Terminology
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2018-08-02-Merge-arrays-with-missing-data.html">
+     Merge arrays with missing data
     </a>
    </li>
    <li class="toctree-l2">
@@ -528,6 +536,28 @@
     </a>
    </li>
   </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Links
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://climateextremes.org.au">
+   CLEX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="http://climate-cms.wikis.unsw.edu.au">
+   CMS Wiki
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://nci.org.au">
+   NCI
+  </a>
  </li>
 </ul>
 
@@ -635,8 +665,15 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Problem description
+   Compare data with different calendars
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#claire-carouge-clex-cms">
+     Claire Carouge, CLEX CMS
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#inputs">
@@ -681,9 +718,10 @@
         
               <div>
                 
-  <p><strong>By Claire Carouge</strong></p>
-<div class="tex2jax_ignore mathjax_ignore section" id="problem-description">
-<h1>Problem description<a class="headerlink" href="#problem-description" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="compare-data-with-different-calendars">
+<h1>Compare data with different calendars<a class="headerlink" href="#compare-data-with-different-calendars" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="claire-carouge-clex-cms">
+<h2>Claire Carouge, CLEX CMS<a class="headerlink" href="#claire-carouge-clex-cms" title="Permalink to this headline">¶</a></h2>
 <p>Recently, someone contacted us for help to compute an ensemble mean over CMIP5 outputs from different models. He was looking at future projections which means the dates are outside the range covered by datetime64[ns] format. Additionally, neither model used the real calendar, one is using a 360 days calendar, the other is using a No Leap Year calendar. In that case, Xarray will default to using <a class="reference external" href="https://unidata.github.io/cftime/">cftime</a> objects to represent the dates using the calendar provided in the file.</p>
 <p>Because of the way CMIP5 experiments are designed, in addition to using different calendars, both models also covered a slightly different time period. All this means, the data has to be manually aligned in time before we can average across the model dimension. This cannot be done automatically by Xarray.</p>
 <p>When dealing with different calendars, the way to align the dates depends on what you are interested in. In our case, we didn’t care about the exact length of the month in days, the value for February 2100 represents the same month whether this month is 28 days in the No Leap calendar or 30 days in the 360 days calendar. This means we have a relatively simple problem. We don’t need to worry about weighting of the data when changing calendar, or masking data out. Masking data or weighting data would be necessary for changing daily data from a No Leap calendar (365 values per year) to a 360 day calendar (only 360 values per year). Deciding which technique to use would be for the researcher to decide depending on what would make sense scientifically.</p>
@@ -694,6 +732,7 @@
 <span class="kn">import</span> <span class="nn">cftime</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1258,16 +1297,16 @@ Coordinates:
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-env-analysis3-19.07-py"
+            mode: "conda-env-analysis3-21.10-py"
         },
         kernelOptions: {
-            kernelName: "conda-env-analysis3-19.07-py",
+            kernelName: "conda-env-analysis3-21.10-py",
             path: "./posts"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-env-analysis3-19.07-py'</script>
+    <script>kernelName = 'conda-env-analysis3-21.10-py'</script>
 
               </div>
               
